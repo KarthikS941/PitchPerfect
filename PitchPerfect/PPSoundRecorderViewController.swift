@@ -19,7 +19,7 @@ class PPSoundRecorderViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // Set Default UI when launch
-        self.loadRecordStoppedUIWith(PPConstants.recordStatusDefault)
+        loadRecordStoppedUIWith(PPConstants.recordStatusDefault)
     }
 
     override func didReceiveMemoryWarning() {
