@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  PitchPerfect
 //
 //  Created by Karthik Sankar on 8/31/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
     
     // Outlets
     @IBOutlet weak var recordButton: UIButton!
