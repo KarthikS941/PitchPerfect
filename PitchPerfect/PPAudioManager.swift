@@ -33,7 +33,7 @@ enum PPAudioPlayEffect:Int {
     case reverbEffect = 6       // Reverb
 }
 
-class PPAudioManager {
+class PPAudioManager : NSObject {
     
     // Properties
     var currentTrackURL:URL?
@@ -157,13 +157,13 @@ extension PPAudioManager {
 
         switch effect {
         case .snailEffect:
-            playAudioWith(rate: 0.5)
+            playAudioWith(rate: PPConstants.snailEffectConstant)
         case .rabitEffect:
-            playAudioWith(rate: 1.5)
+            playAudioWith(rate: PPConstants.rabitEffectConstant)
         case .chipmunkEffect:
-            playAudioWith(pitch: 1000)
+            playAudioWith(pitch: PPConstants.chipmunkEffectConstant)
         case .darthvaderEffect:
-            playAudioWith(pitch: -1000)
+            playAudioWith(pitch: PPConstants.darthvaderEffectConstant)
         case .echoEffect:
             playAudioWith(echo: true)
         case .reverbEffect:
