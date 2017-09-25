@@ -33,7 +33,7 @@ enum PPAudioPlayEffect:Int {
     case reverbEffect = 6       // Reverb
 }
 
-class PPAudioManager : NSObject {
+class PPAudioManager {
     
     // Properties
     var currentTrackURL:URL?
