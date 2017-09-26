@@ -18,17 +18,6 @@ class PPEffectsViewController: UIViewController {
     @IBOutlet weak var vaderButton: UIButton!
     @IBOutlet weak var chipmukButton: UIButton!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // MARK: - Actions
     // Common Button Action for all Effect Buttons
     @IBAction func playbackTapped(_ sender: Any) {
