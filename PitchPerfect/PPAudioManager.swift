@@ -154,7 +154,6 @@ extension PPAudioManager {
     
     // Play Audio
     func playAudioIn(effect:PPAudioPlayEffect) {
-
         switch effect {
         case .snailEffect:
             playAudioWith(rate: PPConstants.snailEffectConstant)
