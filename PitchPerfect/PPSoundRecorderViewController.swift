@@ -19,14 +19,8 @@ class PPSoundRecorderViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // Set Default UI when launch
-        loadRecordStoppedUIWith(PPConstants.recordStatusDefault)
+        loadRecordUIFor(isRecording: false, PPConstants.recordStatusDefault)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     
     // MARK: - Actions
     // Action on tapping Mic Button
@@ -35,7 +29,8 @@ class PPSoundRecorderViewController: UIViewController {
         PPAudioManager.sharedManager.setAudioManagerTo(recordingStatus: .RecordingOn) { (success, error) in
             // Check if status is true , if yes load recording on UI
             if success {
-                self.loadRecordingUI() // Recording started successfully load UI
+                // Recording started successfully load UI
+                self.loadRecordUIFor(isRecording: true)
             }
             else {
                 self.fallback() // Error Starting Recording Display Error UI
@@ -50,7 +45,7 @@ class PPSoundRecorderViewController: UIViewController {
         PPAudioManager.sharedManager.setAudioManagerTo(recordingStatus: .RecordingOff) { (success, error) in
             if success {
                 // Display Re Record UI
-                self.loadRecordStoppedUIWith(PPConstants.recordStatusRerecord)
+                self.loadRecordUIFor(isRecording: false, PPConstants.recordStatusRerecord)
                 // Navigate to Effects View Controller on Stop
                 self.showEffectsViewController()
             }
@@ -61,29 +56,29 @@ class PPSoundRecorderViewController: UIViewController {
     }
 
     // MARK: - UI Methods
-    // UI when Recording is started
-    func loadRecordingUI() {
-        self.recordButton.isEnabled = false
-        self.statusLabel.text = PPConstants.recordStatusStarted
-        self.stopRecordButton.isHidden = false
-    }
-    
-    // UI when recording is finished / Default UI
-    func loadRecordStoppedUIWith(_ statusMessage:String) {
-        self.recordButton.isEnabled = true
-        self.statusLabel.text = statusMessage
-        self.stopRecordButton.isHidden = true
+    // Load UI based on recording state
+    func loadRecordUIFor(isRecording: Bool,_ statusMessage: String? = nil) {
+        // Check if recording is on
+        if isRecording {
+            recordButton.isEnabled = false
+            statusLabel.text = PPConstants.recordStatusStarted
+            stopRecordButton.isHidden = false
+            return
+        }
+        recordButton.isEnabled = true
+        statusLabel.text = statusMessage ?? PPConstants.recordStatusFallback
+        stopRecordButton.isHidden = true
     }
     
     // UI when any Error Happens
     func fallback() {
-        self.loadRecordStoppedUIWith(PPConstants.recordStatusFallback)
+        loadRecordUIFor(isRecording: false, PPConstants.recordStatusFallback)
     }
     
     // MARK: - Navigation Methods
     func showEffectsViewController() {
         // Show Effects View Controller
-        self.performSegue(withIdentifier: PPConstants.effectsViewController , sender: self)
+        performSegue(withIdentifier: PPConstants.effectsViewController , sender: self)
     }
 }
 
